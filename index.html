@@ -152,15 +152,18 @@ function movePlayer(x, y) {
   player.y = Math.max(player.radius + 50, Math.min(height - player.radius, y));
 }
 
+const fingerOffset = 100;
+
 canvas.addEventListener("touchmove", function(e) {
   e.preventDefault();
   const touch = e.touches[0];
-  movePlayer(touch.clientX, touch.clientY);
+  movePlayer(touch.clientX, touch.clientY - fingerOffset);
 }, { passive: false });
 
 canvas.addEventListener("touchstart", function(e) {
+  e.preventDefault();
   const touch = e.touches[0];
-  movePlayer(touch.clientX, touch.clientY);
+  movePlayer(touch.clientX, touch.clientY - fingerOffset);
 }, { passive: false });
 
 canvas.addEventListener("mousemove", function(e) {
